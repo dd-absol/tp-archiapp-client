@@ -25,12 +25,23 @@ msgs = [
   { "msg": "I love cats" }
 ];
 
+const baseUrl = 'http://localhost:8080/msg'
+
+console.log(baseUrl + "/getAll");
+
+fetch(`${baseUrl}/getAll`)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    msgs = data.map((msg) => { return { "msg": msg }; });
+    update(msgs);
+  });
+
 function update(tab) {
   let message_list = document.getElementById("message-list");
 
-  while (message_list.children.length > 0) {
-    message_list.children[0].remove();
-  }
+  message_list.innerHTML = "";
 
   for (msg of tab) {
     let message = document.createElement("li");
@@ -39,4 +50,23 @@ function update(tab) {
   }
 }
 
-document.getElementById("update-button").addEventListener("click", () => update(msgs), false)
+function send_message(tab) {
+  const new_message = document.getElementById("message-text").value;
+  console.log(new_message);
+
+  if (new_message.length > 0) {
+    fetch(`${baseUrl}/post/${new_message}`)
+      .then((response) => {
+        if (response.status == 200) {
+          tab.push({ "msg": new_message });
+        }
+      }).then(() => {
+        update(tab);
+      })
+  } else {
+    update(tab);
+  }
+}
+
+document.getElementById("update-button").addEventListener("click", () => send_message(msgs), false)
+
