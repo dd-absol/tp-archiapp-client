@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>so empty</title>
-    <link href="style.css" rel="stylesheet" type="text/css">
-  </head>
-  <body>
-    <h1>
-      Mon Titre lol
-    </h1>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>so empty</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <h1>
+    TP Chat app
+  </h1>
+  <textarea name="author-input" id="author-text" placeholder="your name"></textarea>
+  <textarea name="server-url" id="server-text" placeholder="your name"></textarea>
+  <div className="messagesContainer">
     <ul id="message-list">
-      <li>message 1</li>
-      <li>message 2</li>
-      <li>message 3</li>
-      <li>message 4</li>
-      <li>message 5</li>
     </ul>
-    <textarea name="text-input" id="message-text" placeholder="Write in me"></textarea>
-    <button id="update-button">
-      Update messages
-    </button>
-    <script src="script.js"></script>
-  </body>
+  </div>
+  <textarea name="text-input" id="message-text" placeholder="Write in me"></textarea>
+  <button id="update-button">
+    Send message
+  </button>
+  <button id="refresh-button">
+    Refresh message history
+  </button>
+  <script src="script.js"></script>
+</body>
+
 </html>
